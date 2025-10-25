@@ -3,9 +3,16 @@
 body {
   font-size: 18px;
   background-color: var(--neutral-900);
-  color: #fff;
-  text-transform: uppercase;
-  font-family: "Bricolage Grotesque";
+  color: var(--neutral-0);
+  font-family: "DM Sans", sans-serif;
+}
+
+.border__hover--white {
+  border: 2px solid transparent;
+}
+
+.border__hover--white:hover {
+  border: 2px solid var(--neutral-0);
 }
 
 :root {
