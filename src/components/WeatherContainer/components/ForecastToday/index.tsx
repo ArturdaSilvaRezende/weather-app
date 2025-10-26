@@ -1,8 +1,23 @@
 import { useWeather } from "../../../../hooks/useWeather";
 import BgTodayLarge from "../../../../assets/images/bg-today-large.svg";
+import { getIconKeyFromWMO, ICONS } from "../../../../utils/getIconKey";
 
 export default function ForecastToday() {
   const { weatherData, loading, error, fetchWeather } = useWeather();
+
+  const code = weatherData?.current?.weathercode as number | undefined;
+  const iconKey = getIconKeyFromWMO(code);
+  const iconSrc = ICONS[iconKey];
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }).format(date);
+  };
 
   return (
     <>
@@ -11,12 +26,17 @@ export default function ForecastToday() {
         style={{ backgroundImage: `url(${BgTodayLarge})` }}
       >
         <div>
-          <h1 className="text-[28px] font-bold">Berlin, Germany</h1>
-          <p>Tuesday, Aug 5, 205</p>
+          <h1 className="text-[28px] font-bold">
+            {weatherData?.location?.city}, {weatherData?.location?.country}
+          </h1>
+          <p>{formatDate(new Date().toISOString())}</p>
         </div>
 
-        <figure>
-          <figcaption className="text-[100px] font-bold italic">20°</figcaption>
+        <figure className="mx-2">
+          <figcaption className="text-[100px] font-bold italic flex items-center gap-10">
+            <img src={iconSrc} alt="icon weather" className="w-24" />
+            {weatherData?.current?.temperature}°
+          </figcaption>
         </figure>
       </div>
 
@@ -26,28 +46,30 @@ export default function ForecastToday() {
         border-2 border-[var(--neutral-600)]"
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Feels Like</h2>
-          <p className="text-[30px]">18°</p>
+          <p className="text-[26px]">{weatherData?.current?.feelsLike}°</p>
         </div>
         <div
           className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] flex flex-col 
         border-2 border-[var(--neutral-600)]"
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Humidity</h2>
-          <p className="text-[30px]">46%</p>
+          <p className="text-[26px]">{weatherData?.current?.humidity}%</p>
         </div>
         <div
           className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] flex flex-col 
         border-2 border-[var(--neutral-600)]"
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Wind</h2>
-          <p className="text-[30px]">14 km/h</p>
+          <p className="text-[26px]">{weatherData?.current?.wind} km/h</p>
         </div>
         <div
           className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] flex flex-col 
         border-2 border-[var(--neutral-600)]"
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Precipitation</h2>
-          <p className="text-[30px]">0 mm</p>
+          <p className="text-[26px]">
+            {weatherData?.current?.precipitation} mm
+          </p>
         </div>
       </div>
     </>
