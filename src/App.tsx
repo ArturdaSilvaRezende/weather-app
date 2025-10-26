@@ -1,12 +1,17 @@
+import { WeatherProvider } from "./hooks/useWeather";
 import Header from "./components/Header";
-import Title from "./components/Title";
+import SearchPlace from "./components/SearchPlace";
+import WeatherContainer from "./components/WeatherContainer";
 
 function App() {
   return (
-    <main>
-      <Header />
-      <Title />
-    </main>
+    <WeatherProvider>
+      <main>
+        <Header />
+        <SearchPlace />
+        <WeatherContainer />
+      </main>
+    </WeatherProvider>
   );
 }
 

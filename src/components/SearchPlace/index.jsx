@@ -1,6 +1,6 @@
 import IconSearch from "../../assets/images/icon-search.svg";
 
-export default function Title() {
+export default function SearchPlace() {
   return (
     <section className="container sm:mt-[70px]">
       <h1
@@ -11,7 +11,7 @@ export default function Title() {
         How's the sky looking today?
       </h1>
 
-      <form className="max-sm:w-11/12 sm:flex sm:justify-center sm:gap-3 mx-auto">
+      <form className="max-sm:w-11/12 sm:flex sm:justify-center sm:gap-5 mx-auto">
         <div
           className="bg-[var(--neutral-700)] px-3 py-2 rounded-[10px] flex justify-between items-center 
         gap-2 sm:w-[520px]"

@@ -44,7 +44,12 @@ export default function Header() {
         >
           <img src={IconUnits} alt="" aria-hidden="true" />
           <span className="max-sm:text-[14px]">Units</span>
-          <img src={IconDropdown} alt="" aria-hidden="true" />
+          <img
+            src={IconDropdown}
+            alt=""
+            aria-hidden="true"
+            className={`${isOpenModalUnits ? "rotate-180" : "rotate-0"}`}
+          />
         </button>
       </header>
 
