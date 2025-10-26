@@ -20,7 +20,7 @@ export default function Header() {
     <>
       <header
         className="container mx-auto max-sm:py-4 max-sm:max-w-full px-5 flex justify-between 
-      items-center relative"
+      items-center relative sm:mt-[40px]"
       >
         <a href="/" className="max-sm:w-36 relative top-2">
           <img src={Logo} alt="Logo Weather App" />
@@ -54,7 +54,7 @@ export default function Header() {
           role="menu"
           aria-labelledby="units-button"
           aria-orientation="vertical"
-          className="absolute top-[75px] max-sm:top-[87px] right-[63px] max-sm:right-[22px] w-[240px] 
+          className="absolute top-[120px] max-sm:top-[87px] right-[63px] max-sm:right-[22px] w-[240px] 
           bg-[var(--neutral-700)] py-2 px-2 rounded-[10px] border-[var(--neutral-600)] border-2 
           fadeIn z-50"
         >

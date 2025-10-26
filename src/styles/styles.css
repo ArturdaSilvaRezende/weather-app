@@ -4,7 +4,7 @@ body {
   font-size: 18px;
   background-color: var(--neutral-900);
   color: var(--neutral-0);
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-primary);
 }
 
 .border__hover--white {
@@ -13,6 +13,13 @@ body {
 
 .border__hover--white:hover {
   border: 2px solid var(--neutral-0);
+}
+
+input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
 }
 
 :root {
@@ -31,4 +38,8 @@ body {
   /* Blue colors */
   --blue-500: hsl(233, 67%, 56%);
   --blue-700: hsl(248, 70%, 36%);
+
+  /* Fonts */
+  --font-primary: "DM Sans", sans-serif;
+  --font-secondary: "Bricolage Grotesque";
 }
