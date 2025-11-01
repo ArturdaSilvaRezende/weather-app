@@ -4,8 +4,8 @@ import HourlyForecast from "./components/HourlyForecast";
 
 export default function WeatherContainer() {
   return (
-    <section className="container mx-auto flex justify-between gap-5 mt-12">
-      <div className="w-full">
+    <section className="container mx-auto grid grid-cols-[1fr_465px] mt-12">
+      <div className="w-[795px]">
         <ForecastToday />
         <DailyForecast />
       </div>

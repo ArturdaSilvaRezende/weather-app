@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <>
       <header
-        className="container mx-auto max-sm:py-4 max-sm:max-w-full px-5 flex justify-between 
+        className="container mx-auto max-sm:py-4 max-sm:max-w-full flex justify-between 
       items-center relative sm:mt-[40px]"
       >
         <a href="/" className="max-sm:w-36 relative top-2">

@@ -3,7 +3,7 @@ import BgTodayLarge from "../../../../assets/images/bg-today-large.svg";
 import { getIconKeyFromWMO, ICONS } from "../../../../utils/getIconKey";
 
 export default function ForecastToday() {
-  const { weatherData, loading, error, fetchWeather } = useWeather();
+  const { weatherData } = useWeather();
 
   const code = weatherData?.current?.weathercode as number | undefined;
   const iconKey = getIconKeyFromWMO(code);
@@ -22,7 +22,7 @@ export default function ForecastToday() {
   return (
     <>
       <div
-        className="h-[280px] rounded-[20px] p-6 flex justify-between items-center"
+        className="h-[280px]  rounded-[20px] p-6 flex justify-between items-center"
         style={{ backgroundImage: `url(${BgTodayLarge})` }}
       >
         <div>
@@ -32,9 +32,10 @@ export default function ForecastToday() {
           <p>{formatDate(new Date().toISOString())}</p>
         </div>
 
-        <figure className="mx-2">
-          <figcaption className="text-[100px] font-bold italic flex items-center gap-10">
-            <img src={iconSrc} alt="icon weather" className="w-24" />
+        <figure className="flex items-center justify-center">
+          <img src={iconSrc} alt="icon weather" className="w-24" />
+
+          <figcaption className="text-[100px] font-bold italic">
             {weatherData?.current?.temperature}°
           </figcaption>
         </figure>

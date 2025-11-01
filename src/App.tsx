@@ -2,6 +2,7 @@ import { WeatherProvider } from "./hooks/useWeather";
 import Header from "./components/Header";
 import SearchPlace from "./components/SearchPlace";
 import WeatherContainer from "./components/WeatherContainer";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Header />
         <SearchPlace />
         <WeatherContainer />
+        <Footer />
       </main>
     </WeatherProvider>
   );

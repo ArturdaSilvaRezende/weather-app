@@ -28,7 +28,7 @@ const WeatherProvider = ({ children }: { children: React.ReactNode }) => {
       const { latitude, longitude, name, country } = geoData.results[0];
 
       const weatherRes = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m,weathercode&timezone=auto`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&timezone=auto&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m,weathercode&hourly=temperature_2m,precipitation_probability,weathercode&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode`
       );
 
       const data = await weatherRes.json();
@@ -46,8 +46,19 @@ const WeatherProvider = ({ children }: { children: React.ReactNode }) => {
           wind: data.current.wind_speed_10m,
           weathercode: data.current.weathercode,
         },
-        hourly: data.hourly,
-        daily: data.daily,
+        hourly: {
+          time: data.hourly.time,
+          temperature: data.hourly.temperature_2m,
+          precipitation: data.hourly.precipitation_probability,
+          weathercode: data.hourly.weathercode,
+        },
+        daily: {
+          time: data.daily.time,
+          maxTemp: data.daily.temperature_2m_max,
+          minTemp: data.daily.temperature_2m_min,
+          precipitation: data.daily.precipitation_sum,
+          weathercode: data.daily.weathercode,
+        },
       };
 
       setWeatherData(formattedData);
