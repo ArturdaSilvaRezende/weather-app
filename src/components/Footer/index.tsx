@@ -1,16 +1,18 @@
 export default function Footer() {
   return (
     <footer className="mt-[75px] mb-5 border-t pt-5 border-amber-50">
-      <p className="text-center">
-        <div>
+      <div className="text-center">
+        <p>
           <span>Challenge by </span>
           <a href="https://www.frontendmentor.io?ref=challenge">
             Frontend Mentor
           </a>
-        </div>
-        <span>Coded by</span>
-        <a href="#">Artur da Silva Rezende</a>
-      </p>
+        </p>
+        <p>
+          <span>Coded by</span>
+          <a href="#">Artur da Silva Rezende</a>
+        </p>
+      </div>
     </footer>
   );
 }

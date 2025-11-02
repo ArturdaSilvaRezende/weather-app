@@ -11,11 +11,12 @@ export default function DailyForecast() {
   return (
     <>
       <h1 className="mt-10 mb-5">Daily Forecast</h1>
-      <div className="flex gap-4 overflow-x-auto">
+      <div className="flex gap-4 flex-wrap overflow-x-auto">
         {daily?.time?.map((date: string, i: number) => (
           <div
             key={date}
-            className="bg-[var(--neutral-700)] w-[120px] p-3 rounded-[12px] flex flex-col items-center"
+            className="bg-[var(--neutral-700)] w-[120px] p-3 rounded-[12px] flex flex-col items-center
+            max-sm:w-[98px]"
           >
             <p className="text-sm mb-2">
               {new Date(date).toLocaleDateString("en-US", { weekday: "short" })}
@@ -28,10 +29,10 @@ export default function DailyForecast() {
             />
 
             <div className="flex justify-between items-center w-full">
-              <p className="text-lg font-bold">
+              <p className="text-lg font-bold max-sm:text-[16px]">
                 {Math.round(daily.maxTemp[i])}°
               </p>
-              <p className="text-lg font-bold">
+              <p className="text-lg font-bold max-sm:text-[16px]">
                 {Math.round(daily.minTemp[i])}°
               </p>
             </div>

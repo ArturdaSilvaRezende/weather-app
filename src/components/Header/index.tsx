@@ -20,7 +20,7 @@ export default function Header() {
     <>
       <header
         className="container mx-auto max-sm:py-4 max-sm:max-w-full flex justify-between 
-      items-center relative sm:mt-[40px]"
+      items-center relative sm:mt-[40px] max-sm:px-4"
       >
         <a href="/" className="max-sm:w-36 relative top-2">
           <img src={Logo} alt="Logo Weather App" />
