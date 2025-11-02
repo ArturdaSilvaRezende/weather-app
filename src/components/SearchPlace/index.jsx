@@ -2,7 +2,7 @@ import IconSearch from "../../assets/images/icon-search.svg";
 
 export default function SearchPlace() {
   return (
-    <section className="container sm:mt-[70px]">
+    <section className="container sm:mt-[70px] max-lg:mx-auto">
       <h1
         className="max-sm:p-[40px] max-sm:text-5xl text-6xl text-center font-[500] leading-tight 
         sm:mb-[60px]"

@@ -15,17 +15,17 @@ export default function DailyForecast() {
         {daily?.time?.map((date: string, i: number) => (
           <div
             key={date}
-            className="bg-[var(--neutral-700)] w-[120px] p-3 rounded-[12px] flex flex-col items-center
+            className="bg-[var(--neutral-700)] w-[99px] p-3 rounded-[12px] flex flex-col items-center
             max-sm:w-[98px]"
           >
-            <p className="text-sm mb-2">
+            <p className="text-sm mb-2 text-[16px]">
               {new Date(date).toLocaleDateString("en-US", { weekday: "short" })}
             </p>
 
             <img
               src={iconSrc}
               alt="Weather icon"
-              className="w-[40px] h-[40px] mb-2"
+              className="w-[60px] h-[60px] mb-2"
             />
 
             <div className="flex justify-between items-center w-full">

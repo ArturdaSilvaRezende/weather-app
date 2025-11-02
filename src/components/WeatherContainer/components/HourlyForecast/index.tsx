@@ -40,60 +40,64 @@ export default function HourlyForecast() {
 
   return (
     <div
-      className="bg-[var(--neutral-700)] rounded-[20px] p-6 max-h-[632px] overflow-y-auto pb-5
-    max-lg:mt-10 max-lg:mx-4 max-lg:px-3 max-lg:pt-4 max-lg:pb-10 max-lg:overflow-y-hidden
-    max-lg:max-h-[none]"
+      className="overflow-y-auto max-h-[654px] pr-2 max-lg:overflow-y-hidden max-lg:max-h-[none]
+    "
     >
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold">Hourly forecast</h2>
+      <div
+        className="bg-[var(--neutral-700)] rounded-[20px] p-6   pb-5
+    max-lg:mt-10 max-sm:mx-4 max-lg:px-3 max-lg:pt-4 max-lg:pb-10"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold">Hourly forecast</h2>
 
-        <select
-          className="bg-[var(--neutral-800)] border border-[var(--neutral-600)] rounded-md px-3 py-2"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-          disabled={!daysISO.length}
-        >
-          {!daysISO.length && <option>Loading days…</option>}
-          {daysISO.map((iso) => (
-            <option key={iso} value={iso}>
-              {fmtDay(iso)}
-            </option>
-          ))}
-        </select>
+          <select
+            className="bg-[var(--neutral-800)] border border-[var(--neutral-600)] rounded-md px-3 py-2"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+            disabled={!daysISO.length}
+          >
+            {!daysISO.length && <option>Loading days…</option>}
+            {daysISO.map((iso) => (
+              <option key={iso} value={iso}>
+                {fmtDay(iso)}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {!hourIdxForDay.length ? (
+          <p className="text-[var(--neutral-300)]">No hourly data available.</p>
+        ) : (
+          <ul className="flex flex-col gap-3">
+            {hourIdxForDay.map((i) => {
+              const hourISO = hourlyTimes[i];
+              const temp = Math.round(hourlyTemps[i] ?? 0);
+              const wCode = hourlyCodes[i];
+              const iconKey = getIconKeyFromWMO(wCode);
+              const iconSrc = ICONS[iconKey];
+
+              return (
+                <li
+                  key={hourISO}
+                  className="flex items-center justify-between bg-[var(--neutral-800)] px-3 py-3 rounded-[12px] shadow-sm"
+                >
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={iconSrc}
+                      alt="weather icon"
+                      className="w-7 h-7 object-contain"
+                    />
+                    <span className="text-[16px] font-medium">
+                      {fmtHour(hourISO)}
+                    </span>
+                  </div>
+                  <span className="text-[18px] font-semibold">{temp}°</span>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
-
-      {!hourIdxForDay.length ? (
-        <p className="text-[var(--neutral-300)]">No hourly data available.</p>
-      ) : (
-        <ul className="flex flex-col gap-3">
-          {hourIdxForDay.map((i) => {
-            const hourISO = hourlyTimes[i];
-            const temp = Math.round(hourlyTemps[i] ?? 0);
-            const wCode = hourlyCodes[i];
-            const iconKey = getIconKeyFromWMO(wCode);
-            const iconSrc = ICONS[iconKey];
-
-            return (
-              <li
-                key={hourISO}
-                className="flex items-center justify-between bg-[var(--neutral-800)] px-3 py-3 rounded-[12px] shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <img
-                    src={iconSrc}
-                    alt="weather icon"
-                    className="w-7 h-7 object-contain"
-                  />
-                  <span className="text-[16px] font-medium">
-                    {fmtHour(hourISO)}
-                  </span>
-                </div>
-                <span className="text-[18px] font-semibold">{temp}°</span>
-              </li>
-            );
-          })}
-        </ul>
-      )}
     </div>
   );
 }
