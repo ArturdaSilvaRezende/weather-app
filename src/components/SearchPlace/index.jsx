@@ -1,6 +1,19 @@
+import { useState } from "react";
+import { useWeather } from "../../hooks/useWeather";
 import IconSearch from "../../assets/images/icon-search.svg";
 
 export default function SearchPlace() {
+  const { fetchWeather } = useWeather();
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearch = () => {
+    fetchWeather(searchInput);
+  };
+
   return (
     <section className="container sm:mt-[70px] max-lg:mx-auto">
       <h1
@@ -21,6 +34,8 @@ export default function SearchPlace() {
             type="text"
             placeholder="Search for a city"
             className="sm:py-2 sm:px-4 sm:w-[120px]"
+            value={searchInput}
+            onChange={handleInputChange}
           />
         </div>
 
@@ -28,6 +43,7 @@ export default function SearchPlace() {
           type="button"
           className="bg-[var(--blue-500)] hover:bg-[var(--blue-700)] px-3 py-2 rounded-[10px] max-sm:mt-3 
           max-sm:w-full transition duration-300 ease-in-out cursor-pointer w-[120px]"
+          onClick={handleSearch}
         >
           Search
         </button>

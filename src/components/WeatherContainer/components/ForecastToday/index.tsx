@@ -3,7 +3,9 @@ import { getIconKeyFromWMO, ICONS } from "../../../../utils/getIconKey";
 import "./styles.css";
 
 export default function ForecastToday() {
-  const { weatherData } = useWeather();
+  const { weatherData, units } = useWeather();
+
+  console.log(units);
 
   const code = weatherData?.current?.weathercode as number | undefined;
   const iconKey = getIconKeyFromWMO(code);
@@ -18,6 +20,21 @@ export default function ForecastToday() {
       year: "numeric",
     }).format(date);
   };
+
+  const temperature =
+    units.temperature === "fahrenheit"
+      ? (weatherData?.current?.temperature * 9) / 5 + 32
+      : weatherData?.current?.temperature;
+
+  const wind =
+    units.wind === "mph"
+      ? weatherData?.current?.wind * 0.621371
+      : weatherData?.current?.wind;
+
+  const precipitation =
+    units.precipitation === "in"
+      ? weatherData?.current?.precipitation / 25.4
+      : weatherData?.current?.precipitation;
 
   return (
     <>
@@ -36,7 +53,7 @@ export default function ForecastToday() {
           <img src={iconSrc} alt="icon weather" className="w-24" />
 
           <figcaption className="text-[100px] font-bold italic max-sm:ml-3">
-            {weatherData?.current?.temperature}°
+            {Math.round(temperature)}°
           </figcaption>
         </figure>
       </div>
@@ -66,7 +83,7 @@ export default function ForecastToday() {
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Wind</h2>
           <p className="text-[26px] max-sm:text-[22px]">
-            {weatherData?.current?.wind} km/h
+            {Math.round(wind)} {units.wind === "mph" ? "mph" : "km/h"}
           </p>
         </div>
         <div
@@ -75,7 +92,8 @@ export default function ForecastToday() {
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Precipitation</h2>
           <p className="text-[26px] max-sm:text-[22px]">
-            {weatherData?.current?.precipitation} mm
+            {precipitation?.toFixed(1)}{" "}
+            {units.precipitation === "inch" ? "in" : "mm"}
           </p>
         </div>
       </div>

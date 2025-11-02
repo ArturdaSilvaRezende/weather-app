@@ -11,7 +11,7 @@ const fmtHour = (iso: string) =>
 const dateKey = (iso: string) => iso.split("T")[0];
 
 export default function HourlyForecast() {
-  const { weatherData } = useWeather();
+  const { weatherData, units } = useWeather();
 
   const daysISO: string[] = weatherData?.daily?.time ?? [];
   const hourlyTimes: string[] = weatherData?.hourly?.time ?? [];
@@ -20,6 +20,8 @@ export default function HourlyForecast() {
     weatherData?.hourly?.temperature ??
     [];
   const hourlyCodes: number[] = weatherData?.hourly?.weathercode ?? [];
+
+  const tempSuffix = units?.temperature === "fahrenheit" ? "°F" : "°C";
 
   const [selectedDate, setSelectedDate] = useState<string>("");
 
@@ -39,14 +41,8 @@ export default function HourlyForecast() {
   }, [selectedDate, hourlyTimes]);
 
   return (
-    <div
-      className="overflow-y-auto max-h-[654px] pr-2 max-lg:overflow-y-hidden max-lg:max-h-[none]
-    "
-    >
-      <div
-        className="bg-[var(--neutral-700)] rounded-[20px] p-6   pb-5
-    max-lg:mt-10 max-sm:mx-4 max-lg:px-3 max-lg:pt-4 max-lg:pb-10"
-      >
+    <div className="overflow-y-auto max-h-[654px] pr-2 max-lg:overflow-y-hidden">
+      <div className="bg-[var(--neutral-700)] rounded-[20px] p-6 max-lg:px-3 max-lg:pt-4">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Hourly forecast</h2>
 
@@ -91,7 +87,12 @@ export default function HourlyForecast() {
                       {fmtHour(hourISO)}
                     </span>
                   </div>
-                  <span className="text-[18px] font-semibold">{temp}°</span>
+
+                  {/* temperatura já convertida pela API + sufixo conforme dropdown */}
+                  <span className="text-[18px] font-semibold">
+                    {temp}
+                    {tempSuffix}
+                  </span>
                 </li>
               );
             })}

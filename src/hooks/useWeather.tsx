@@ -7,6 +7,18 @@ const WeatherProvider = ({ children }: { children: React.ReactNode }) => {
   const [weatherData, setWeatherData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [units, setUnits] = useState({
+    temperature: "celsius",
+    wind: "kmh",
+    precipitation: "mm",
+  });
+
+  const updateUnits = (type: string, value: string) => {
+    setUnits((prev: any) => ({
+      ...prev,
+      [type]: value,
+    }));
+  };
 
   useEffect(() => {
     fetchWeather("Berlin");
@@ -76,6 +88,8 @@ const WeatherProvider = ({ children }: { children: React.ReactNode }) => {
         loading,
         error,
         fetchWeather,
+        units,
+        updateUnits,
       }}
     >
       {children}
