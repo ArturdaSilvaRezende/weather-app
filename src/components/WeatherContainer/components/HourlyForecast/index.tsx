@@ -41,7 +41,10 @@ export default function HourlyForecast() {
   }, [selectedDate, hourlyTimes]);
 
   return (
-    <div className="overflow-y-auto max-h-[654px] pr-2 max-lg:overflow-y-hidden">
+    <div
+      className="overflow-y-auto max-h-[654px] pr-2 max-lg:overflow-y-hidden max-sm:mt-10 
+    max-sm:px-5 responsive__md"
+    >
       <div className="bg-[var(--neutral-700)] rounded-[20px] p-6 max-lg:px-3 max-lg:pt-4">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Hourly forecast</h2>

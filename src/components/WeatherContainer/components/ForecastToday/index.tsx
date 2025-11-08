@@ -40,7 +40,7 @@ export default function ForecastToday() {
     <>
       <div
         className="h-[280px] rounded-[20px] p-6 flex justify-between items-center
-      background__image max-sm:flex-col"
+      background__image max-sm:flex-col responsive__md"
       >
         <div className="">
           <h1 className="text-[28px] font-bold">
@@ -58,10 +58,10 @@ export default function ForecastToday() {
         </figure>
       </div>
 
-      <div className="mt-7 flex gap-5 flex-wrap max-sm:gap-3 max-sm:justify-between">
+      <div className="mt-7 flex gap-5 flex-wrap max-sm:gap-5 max-sm:justify-between responsive__md">
         <div
           className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] flex flex-col 
-        border-2 border-[var(--neutral-600)] max-sm:w-[155px]"
+        border-2 border-[var(--neutral-600)] max-sm:w-[160px] responsive__card--md"
         >
           <h2 className="text-[var(--neutral-300)]  mb-3">Feels Like</h2>
           <p className="text-[26px] max-sm:text-[22px]">
@@ -70,7 +70,7 @@ export default function ForecastToday() {
         </div>
         <div
           className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] flex flex-col 
-        border-2 border-[var(--neutral-600)] max-sm:w-[155px]"
+        border-2 border-[var(--neutral-600)] max-sm:w-[160px] responsive__card--md"
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Humidity</h2>
           <p className="text-[26px] max-sm:text-[22px]">
@@ -79,7 +79,7 @@ export default function ForecastToday() {
         </div>
         <div
           className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] flex flex-col 
-        border-2 border-[var(--neutral-600)] max-sm:w-[155px]"
+        border-2 border-[var(--neutral-600)] max-sm:w-[160px] responsive__card--md"
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Wind</h2>
           <p className="text-[26px] max-sm:text-[22px]">
@@ -88,7 +88,7 @@ export default function ForecastToday() {
         </div>
         <div
           className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] flex flex-col 
-        border-2 border-[var(--neutral-600)] max-sm:w-[155px]"
+        border-2 border-[var(--neutral-600)] max-sm:w-[160px] responsive__card--md"
         >
           <h2 className="text-[var(--neutral-300)] mb-3">Precipitation</h2>
           <p className="text-[26px] max-sm:text-[22px]">

@@ -5,3 +5,10 @@
     background-image: url("../../../../assets/images/bg-today-small.svg");
   }
 }
+
+.responsive__card--md {
+  @media screen and (width >= 768px) and (width <= 1024px) {
+    width: 150px;
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  }
+}

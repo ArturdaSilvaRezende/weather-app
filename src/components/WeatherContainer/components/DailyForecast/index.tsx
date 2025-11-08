@@ -10,8 +10,8 @@ export default function DailyForecast() {
 
   return (
     <>
-      <h1 className="mt-10 mb-5">Daily Forecast</h1>
-      <div className="flex gap-4 flex-wrap overflow-x-auto">
+      <h1 className="mt-10 mb-5 responsive__md">Daily Forecast</h1>
+      <div className="flex gap-4 flex-wrap overflow-x-auto responsive__md">
         {daily?.time?.map((date: string, i: number) => (
           <div
             key={date}
