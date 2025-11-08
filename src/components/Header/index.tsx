@@ -4,6 +4,7 @@ import { useWeather } from "../../hooks/useWeather";
 import Logo from "../../assets/images/logo.svg";
 import IconUnits from "../../assets/images/icon-units.svg";
 import IconDropdown from "../../assets/images/icon-dropdown.svg";
+import IconCheck from "../../assets/images/icon-checkmark.svg";
 
 export default function Header() {
   const [isOpenModalUnits, setIsOpenModalUnits] = useState(false);
@@ -11,7 +12,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="container mx-auto flex justify-between items-center relative sm:mt-[40px]">
+      <header
+        className="container mx-auto flex justify-between items-center relative sm:mt-[40px] 
+      max-sm:px-5"
+      >
         <a href="/" className="max-sm:w-36 relative top-2">
           <img src={Logo} alt="Logo Weather App" />
         </a>
@@ -20,7 +24,7 @@ export default function Header() {
           id="units-button"
           type="button"
           className="flex items-center gap-2 bg-[var(--neutral-700)] px-3 py-2 rounded-[10px] border-2 
-          border-transparent hover:border-[var(--neutral-0)] cursor-pointer"
+          border-transparent hover:border-[var(--neutral-0)] cursor-pointer max-sm:mt-3"
           onClick={() => setIsOpenModalUnits((s) => !s)}
           aria-expanded={isOpenModalUnits}
         >
@@ -104,7 +108,7 @@ function Group({
     <ul
       role="group"
       aria-label={label}
-      className="mt-2 border-t-2 border-[var(--neutral-600)] pt-2"
+      className="mt-2 border-t-2 border-[var(--neutral-600)] pt-2 fadeIn"
     >
       <li className="text-[var(--neutral-300)] px-3 text-[16px]">{label}</li>
       {options.map((op) => (
@@ -112,14 +116,18 @@ function Group({
           key={op.key}
           role="menuitemradio"
           aria-checked={current === op.key}
-          className={`rounded-[10px] py-2 px-3 cursor-pointer ${
-            current === op.key
-              ? "bg-[var(--neutral-800)]"
-              : "hover:bg-[var(--neutral-800)]"
-          }`}
+          className={`rounded-[10px] py-2 px-3 cursor-pointer text-[14px] flex items-center 
+            justify-between w-full ${
+              current === op.key
+                ? "bg-[var(--neutral-800)]"
+                : "hover:bg-[var(--neutral-800)]"
+            }`}
           onClick={() => onSelect(op.key)}
         >
-          {op.label}
+          <span>{op.label}</span>
+          <span>
+            {current === op.key && <img src={IconCheck} alt="" aria-hidden />}
+          </span>
         </li>
       ))}
     </ul>
