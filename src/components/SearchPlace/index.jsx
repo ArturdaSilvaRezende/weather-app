@@ -41,7 +41,7 @@ export default function SearchPlace() {
 
         <button
           type="button"
-          className="bg-[var(--blue-500)] hover:bg-[var(--blue-700)] px-3 py-2 rounded-[10px] max-sm:mt-3 
+          className="bg-[var(--neutral-800)] hover:bg-[var(--blue-700)] px-3 py-2 rounded-[10px] max-sm:mt-3 
           max-sm:w-full transition duration-300 ease-in-out cursor-pointer w-[120px]"
           onClick={handleSearch}
         >

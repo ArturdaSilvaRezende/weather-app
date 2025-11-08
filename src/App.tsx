@@ -1,7 +1,6 @@
 import { WeatherProvider } from "./hooks/useWeather";
 import Header from "./components/Header";
-import SearchPlace from "./components/SearchPlace";
-import WeatherContainer from "./components/WeatherContainer";
+import ContentMain from "./components/ContentMain";
 import Footer from "./components/Footer";
 
 function App() {
@@ -9,8 +8,7 @@ function App() {
     <WeatherProvider>
       <main>
         <Header />
-        <SearchPlace />
-        <WeatherContainer />
+        <ContentMain />
         <Footer />
       </main>
     </WeatherProvider>

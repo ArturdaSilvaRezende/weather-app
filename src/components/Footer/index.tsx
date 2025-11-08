@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
         <p>
           <span>Coded by</span>
-          <a href="#">Artur da Silva Rezende</a>
+          <a href="#"> Artur da Silva Rezende</a>
         </p>
       </div>
     </footer>

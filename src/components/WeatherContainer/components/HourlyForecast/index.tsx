@@ -15,10 +15,7 @@ export default function HourlyForecast() {
 
   const daysISO: string[] = weatherData?.daily?.time ?? [];
   const hourlyTimes: string[] = weatherData?.hourly?.time ?? [];
-  const hourlyTemps: number[] =
-    weatherData?.hourly?.temperature_2m ??
-    weatherData?.hourly?.temperature ??
-    [];
+  const hourlyTemps: number[] = weatherData?.hourly?.temperature ?? [];
   const hourlyCodes: number[] = weatherData?.hourly?.weathercode ?? [];
 
   const tempSuffix = units?.temperature === "fahrenheit" ? "°F" : "°C";
@@ -91,7 +88,6 @@ export default function HourlyForecast() {
                     </span>
                   </div>
 
-                  {/* temperatura já convertida pela API + sufixo conforme dropdown */}
                   <span className="text-[18px] font-semibold">
                     {temp}
                     {tempSuffix}
