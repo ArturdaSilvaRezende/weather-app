@@ -8,7 +8,7 @@ export default function WeatherContainer() {
       className="container mx-auto grid grid-cols-[1fr_465px] mt-12 
     max-lg:grid-cols-1 responsive__md"
     >
-      <div className="max-w-[795px] max-sm:px-4">
+      <div className="max-w-[792px] max-sm:px-4">
         <ForecastToday />
         <DailyForecast />
       </div>

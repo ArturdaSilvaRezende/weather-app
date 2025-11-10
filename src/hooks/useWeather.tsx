@@ -46,6 +46,8 @@ type WeatherContextValue = {
   fetchWeather: (city: string) => Promise<void>;
   retry: (cityOverride?: string) => Promise<void>;
   lastCity: string | null;
+  setLastCity?: (city: string) => void;
+  setError?: () => void;
 };
 
 const WeatherContext = createContext<WeatherContextValue | null>(null);
@@ -121,14 +123,9 @@ const WeatherProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  const retry = useCallback(
-    async (cityOverride?: string) => {
-      const city = cityOverride ?? lastCity;
-      if (!city) return;
-      await fetchWeather(city);
-    },
-    [fetchWeather, lastCity]
-  );
+  const retry = useCallback(async () => {
+    await fetchWeather("Berlin");
+  }, [fetchWeather, lastCity]);
 
   useEffect(() => {
     fetchWeather("Berlin");
@@ -145,6 +142,7 @@ const WeatherProvider = ({ children }: { children: React.ReactNode }) => {
         units,
         updateUnits,
         lastCity,
+        setLastCity,
       }}
     >
       {children}

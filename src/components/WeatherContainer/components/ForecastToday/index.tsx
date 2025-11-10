@@ -15,12 +15,10 @@ export default function ForecastToday() {
     }).format(date);
   };
 
-  // ------ Helpers de unidade ------
   const tempSuffix = units?.temperature === "fahrenheit" ? "°F" : "°C";
   const windSuffix = units?.wind === "mph" ? "mph" : "km/h";
   const precipSuffix = units?.precipitation === "inch" ? "in" : "mm";
 
-  // ------ Dados (com fallbacks p/ evitar undefined) ------
   const code = weatherData?.current?.weathercode as number | undefined;
   const iconKey = getIconKeyFromWMO(code);
   const iconSrc = ICONS[iconKey];
@@ -48,21 +46,16 @@ export default function ForecastToday() {
   const isReady = !!weatherData?.current && !loading;
 
   // ------ Skeletons ------
-  const SkeletonBar = ({ className = "" }: { className?: string }) => (
-    <div
-      className={`bg-[var(--neutral-600)] animate-pulse rounded ${className}`}
-    />
-  );
-
   const SkeletonLoadingHero = () => (
     <div
-      className="bg-[var(--neutral-700)] min-h-[280px] min-w-[770px] rounded-[20px] p-6 flex justify-center
-      items-center max-sm:flex-col responsive__md overflow-hidden text-[transparent] animate-pulse"
+      className="bg-[var(--neutral-700)] min-h-[280px] min-w-[790px] rounded-[20px] p-6 flex justify-center
+      items-center max-sm:flex-col responsive__md overflow-hidden text-[transparent] animate-pulse
+      -ml-6"
     >
       <div role="status">
         <svg
           aria-hidden="true"
-          className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-50"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -76,12 +69,11 @@ export default function ForecastToday() {
             fill="currentFill"
           />
         </svg>
+
         <span className="sr-only">Loading...</span>
       </div>
     </div>
   );
-
-  const text = "...";
 
   const SkeletonHero = () => (
     <div
@@ -94,10 +86,13 @@ export default function ForecastToday() {
     </div>
   );
 
-  const SkeletonCard = () => (
-    <div className="bg-[var(--neutral-700)] w-[23%] pt-[16px] pb-2 px-6 rounded-[12px] border-2 border-[var(--neutral-600)] max-sm:w-[160px] responsive__card--md overflow-hidden">
-      <SkeletonBar className="h-4 w-24 mb-3" />
-      <SkeletonBar className="h-6 w-20" />
+  const SkeletonCard = ({ children }: { children: React.ReactNode }) => (
+    <div
+      className="bg-[var(--neutral-700)] w-[23%] pt-[16px] 
+    pb-2 px-6 rounded-[12px] border-2 border-[var(--neutral-600)] max-sm:w-[160px] 
+    responsive__card--md overflow-hidden"
+    >
+      {children}
     </div>
   );
 
@@ -167,10 +162,25 @@ export default function ForecastToday() {
           </>
         ) : (
           <>
-            <SkeletonCard />
-            <SkeletonCard />
-            <SkeletonCard />
-            <SkeletonCard />
+            <SkeletonCard>
+              <h2 className="text-[var(--neutral-300)] mb-3">Feels Like</h2>
+              <span>-</span>
+            </SkeletonCard>
+
+            <SkeletonCard>
+              <h2 className="text-[var(--neutral-300)] mb-3">Humidity</h2>
+              <span>-</span>
+            </SkeletonCard>
+
+            <SkeletonCard>
+              <h2 className="text-[var(--neutral-300)] mb-3">Wind</h2>
+              <span>-</span>
+            </SkeletonCard>
+
+            <SkeletonCard>
+              <h2 className="text-[var(--neutral-300)] mb-3">Precipitation</h2>
+              <span>-</span>
+            </SkeletonCard>
           </>
         )}
       </div>
