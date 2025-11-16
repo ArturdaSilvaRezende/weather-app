@@ -112,8 +112,15 @@ export default function ForecastToday() {
           </div>
 
           <figure className="flex items-center justify-center gap-4">
-            <img src={iconSrc} alt="icon weather" className="w-24" />
-            <figcaption className="text-[100px] font-bold italic max-sm:ml-3">
+            <img
+              src={iconSrc}
+              alt="icon weather"
+              className="w-24 max-sm:mb-10"
+            />
+            <figcaption
+              className="lg:text-[100px] md:text-[120px] font-bold italic max-sm:text-[70px] 
+            max-sm:mb-10"
+            >
               {Math.round(temperature)}
               {tempSuffix}
             </figcaption>
