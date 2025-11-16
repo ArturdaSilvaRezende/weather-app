@@ -12,10 +12,24 @@ export default function DailyForecast() {
   return (
     <>
       <h1 className="mt-10 mb-5 responsive__md">Daily Forecast</h1>
-      <div className="flex gap-4 flex-wrap overflow-x-auto responsive__md">
+      <div
+        className="flex gap-4 flex-wrap overflow-x-auto responsive__md"
+        role="region"
+        aria-label="7-day weather forecast"
+        aria-busy={loading}
+        aria-live="polite"
+      >
         {daily?.time?.map((date: string, i: number) => (
           <div
             key={date}
+            role="group"
+            aria-label={`Forecast for ${new Date(date).toLocaleDateString(
+              "en-US",
+              { weekday: "long" }
+            )}: 
+        max ${Math.round(daily.maxTemp[i])}°, min ${Math.round(
+              daily.minTemp[i]
+            )}°`}
             className="bg-[var(--neutral-700)] w-[99px] p-3 rounded-[12px] flex flex-col items-center
             max-sm:w-[98px]"
           >

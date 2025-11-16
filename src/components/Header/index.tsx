@@ -1,14 +1,20 @@
 // Header.tsx
 import { useState } from "react";
 import { useWeather } from "../../hooks/useWeather";
+
+import GroupUnits from "./components/GroupUnits";
+
 import Logo from "../../assets/images/logo.svg";
 import IconUnits from "../../assets/images/icon-units.svg";
 import IconDropdown from "../../assets/images/icon-dropdown.svg";
-import IconCheck from "../../assets/images/icon-checkmark.svg";
 
 export default function Header() {
   const [isOpenModalUnits, setIsOpenModalUnits] = useState(false);
-  const { units, updateUnits, setPreset } = useWeather();
+  const { units, updateUnits } = useWeather();
+
+  const handleModalUnits = () => {
+    setIsOpenModalUnits(!isOpenModalUnits);
+  };
 
   return (
     <>
@@ -25,14 +31,14 @@ export default function Header() {
           type="button"
           className="flex items-center gap-2 bg-[var(--neutral-700)] px-3 py-2 rounded-[10px] border-2 
           border-transparent hover:border-[var(--neutral-0)] cursor-pointer max-sm:mt-3"
-          onClick={() => setIsOpenModalUnits((s) => !s)}
+          onClick={handleModalUnits}
           aria-expanded={isOpenModalUnits}
         >
-          <img src={IconUnits} alt="" aria-hidden />
+          <img src={IconUnits} alt="icon units" aria-hidden />
           <span>Units</span>
           <img
             src={IconDropdown}
-            alt=""
+            alt="icon dropdown"
             aria-hidden
             className={`${isOpenModalUnits ? "rotate-180" : ""}`}
           />
@@ -45,18 +51,8 @@ export default function Header() {
           role="menu"
           className="absolute top-[100px] right-[35px] w-[260px] bg-[var(--neutral-700)] py-2 px-2 rounded-[10px] border-[var(--neutral-600)] border-2 z-50"
         >
-          {/* Preset opcional */}
-          <button
-            onClick={() =>
-              setPreset(units.temperature === "celsius" ? "imperial" : "metric")
-            }
-            className="w-full text-left rounded-[10px] py-2 px-3 hover:bg-[var(--neutral-800)]"
-          >
-            {units.temperature === "celsius" ? "Switch to Imperial" : "Metric"}
-          </button>
-
           {/* Temperature */}
-          <Group
+          <GroupUnits
             label="Temperature"
             options={[
               { key: "celsius", label: "Celsius (°C)" },
@@ -67,7 +63,7 @@ export default function Header() {
           />
 
           {/* Wind Speed */}
-          <Group
+          <GroupUnits
             label="Wind Speed"
             options={[
               { key: "kmh", label: "km/h" },
@@ -78,7 +74,7 @@ export default function Header() {
           />
 
           {/* Precipitation */}
-          <Group
+          <GroupUnits
             label="Precipitation"
             options={[
               { key: "mm", label: "Millimeters (mm)" },
@@ -90,46 +86,5 @@ export default function Header() {
         </div>
       )}
     </>
-  );
-}
-
-function Group({
-  label,
-  options,
-  current,
-  onSelect,
-}: {
-  label: string;
-  options: { key: string; label: string }[];
-  current: string;
-  onSelect: (val: string) => void;
-}) {
-  return (
-    <ul
-      role="group"
-      aria-label={label}
-      className="mt-2 border-t-2 border-[var(--neutral-600)] pt-2 fadeIn"
-    >
-      <li className="text-[var(--neutral-300)] px-3 text-[16px]">{label}</li>
-      {options.map((op) => (
-        <li
-          key={op.key}
-          role="menuitemradio"
-          aria-checked={current === op.key}
-          className={`rounded-[10px] py-2 px-3 cursor-pointer text-[14px] flex items-center 
-            justify-between w-full ${
-              current === op.key
-                ? "bg-[var(--neutral-800)]"
-                : "hover:bg-[var(--neutral-800)]"
-            }`}
-          onClick={() => onSelect(op.key)}
-        >
-          <span>{op.label}</span>
-          <span>
-            {current === op.key && <img src={IconCheck} alt="" aria-hidden />}
-          </span>
-        </li>
-      ))}
-    </ul>
   );
 }
